@@ -6,14 +6,13 @@ import java.util.LinkedHashMap;
 import java.util.Objects;
 import java.util.Set;
 
+import dk.brics.automaton.Transition;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.math3.random.MersenneTwister;
 import org.evosuite.utils.Randomness;
 
 import eu.fbk.iv4xr.mbt.MBTProperties;
-import eu.fbk.iv4xr.mbt.efsm.exp.Assign;
-import eu.fbk.iv4xr.mbt.efsm.exp.Const;
-import eu.fbk.iv4xr.mbt.efsm.exp.VarSet;
+
 
 import eu.fbk.iv4xr.mbt.utils.EqualsWithNulls;
 /**

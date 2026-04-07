@@ -5,10 +5,6 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.SerializationUtils;
 
-import eu.fbk.iv4xr.mbt.efsm.exp.Assign;
-import eu.fbk.iv4xr.mbt.efsm.exp.AssignSet;
-import eu.fbk.iv4xr.mbt.efsm.exp.Var;
-import eu.fbk.iv4xr.mbt.efsm.exp.VarSet;
 
 public abstract class EFSMOperation implements Cloneable, Serializable {
 

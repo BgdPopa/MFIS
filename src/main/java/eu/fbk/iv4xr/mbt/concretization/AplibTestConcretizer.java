@@ -6,9 +6,7 @@ package eu.fbk.iv4xr.mbt.concretization;
 import java.util.LinkedList;
 import java.util.List;
 
-import eu.fbk.iv4xr.mbt.concretization.impl.AplibConcreteTestCase;
 import eu.fbk.iv4xr.mbt.efsm.EFSM;
-import eu.fbk.iv4xr.mbt.efsm.EFSMFactory;
 import eu.fbk.iv4xr.mbt.efsm.EFSMTransition;
 import eu.fbk.iv4xr.mbt.testcase.AbstractTestSequence;
 import eu.fbk.iv4xr.mbt.testcase.Path;

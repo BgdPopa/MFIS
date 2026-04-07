@@ -9,11 +9,9 @@ import org.junit.jupiter.api.Test;
 import environments.SeAgentState;
 import environments.SeEnvironment;
 import eu.fbk.iv4xr.mbt.MBTProperties;
-import eu.fbk.iv4xr.mbt.concretization.impl.AplibConcreteTestCase;
 import eu.fbk.iv4xr.mbt.concretization.impl.SpaceEngineersTestConcretizer;
 import eu.fbk.iv4xr.mbt.efsm.EFSM;
 import eu.fbk.iv4xr.mbt.efsm.EFSMFactory;
-import eu.fbk.iv4xr.mbt.execution.EFSMTestExecutor;
 import eu.fbk.iv4xr.mbt.execution.on_sut.impl.se.tactics.SpaceEngineersGoalLib;
 import eu.fbk.iv4xr.mbt.strategy.SearchBasedStrategy;
 import eu.fbk.iv4xr.mbt.testcase.AbstractTestSequence;
@@ -30,7 +28,6 @@ import spaceEngineers.controller.SpaceEngineersTestContext;
 
 import static nl.uu.cs.aplib.AplibEDSL.SEQ;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class SpaceEngineersGoalLibTest {
