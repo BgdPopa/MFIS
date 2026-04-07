@@ -10,7 +10,7 @@ import eu.fbk.iv4xr.mbt.efsm.exp.AssignSet;
 import eu.fbk.iv4xr.mbt.efsm.exp.Var;
 import eu.fbk.iv4xr.mbt.efsm.exp.VarSet;
 
-public class EFSMOperation implements Cloneable, Serializable {
+public abstract class EFSMOperation implements Cloneable, Serializable {
 
 	/**
 	 * 
@@ -31,7 +31,12 @@ public class EFSMOperation implements Cloneable, Serializable {
 	@Override
 	public EFSMOperation clone() {
 		
-		return new EFSMOperation((Assign[]) operations.getHash().values().toArray());
+		return new EFSMOperation((Assign[]) operations.getHash().values().toArray()) {
+			@Override
+			public boolean execute(EFSMContext ctx) {
+				return false;
+			}
+		};
 	}
 	
 	public AssignSet getAssignments() {
@@ -64,4 +69,6 @@ public class EFSMOperation implements Cloneable, Serializable {
 			return false;
 		}
 	}
+
+    public abstract boolean execute(EFSMContext ctx);
 }

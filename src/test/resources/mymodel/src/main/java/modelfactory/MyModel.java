@@ -76,9 +76,9 @@ public class MyModel implements EFSMProvider {
 		 * Guards
 		 */
 		// check if a door is open
-		EFSMGuard is_d_1_open = new EFSMGuard(d_1);
-		EFSMGuard is_d_2_open = new EFSMGuard(d_2);
-		EFSMGuard is_d_T_open = new EFSMGuard(d_T);
+		EFSMGuard is_d_1_open = new EFSMGuard();
+		EFSMGuard is_d_2_open = new EFSMGuard();
+		EFSMGuard is_d_T_open = new EFSMGuard();
 
 		/*
 		 * Assignments

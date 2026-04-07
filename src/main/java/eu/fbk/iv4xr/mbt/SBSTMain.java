@@ -3,24 +3,22 @@
  */
 package eu.fbk.iv4xr.mbt;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.tuple.Pair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import eu.fbk.iv4xr.mbt.MBTProperties.SecondaryObjective;
-import eu.fbk.iv4xr.mbt.efsm.cps.TestToPoints;
 import eu.fbk.iv4xr.mbt.strategy.GenerationStrategy;
 import eu.fbk.iv4xr.mbt.strategy.SearchBasedStrategy;
 import eu.fbk.iv4xr.mbt.testcase.AbstractTestSequence;
 import eu.fbk.iv4xr.mbt.testcase.MBTChromosome;
 import eu.fbk.iv4xr.mbt.testsuite.SuiteChromosome;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.tuple.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author kifetew

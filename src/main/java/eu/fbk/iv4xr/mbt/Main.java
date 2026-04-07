@@ -32,8 +32,6 @@ import eu.fbk.iv4xr.mbt.coverage.CoverageGoal;
 import eu.fbk.iv4xr.mbt.efsm.EFSM;
 import eu.fbk.iv4xr.mbt.efsm.EFSMContext;
 import eu.fbk.iv4xr.mbt.efsm.EFSMFactory;
-import eu.fbk.iv4xr.mbt.efsm.cps.TestToPoints;
-import eu.fbk.iv4xr.mbt.efsm.labRecruits.LabRecruitMutationManager;
 import eu.fbk.iv4xr.mbt.execution.EFSMTestExecutor;
 import eu.fbk.iv4xr.mbt.execution.ExecutionResult;
 

@@ -1,6 +1,5 @@
 package eu.fbk.iv4xr.mbt.efsm;
 
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
@@ -41,7 +40,7 @@ public class ModelCreation {
 	
 	@Test
 	public void testGuard() {
-		EFSMGuard guard = new EFSMGuard(or1);
+		EFSMGuard guard = new EFSMGuard();
 	}
 	
 	@Test

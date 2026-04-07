@@ -7,7 +7,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import eu.fbk.iv4xr.mbt.efsm.exp.Exp;
 import eu.fbk.iv4xr.mbt.efsm.exp.VarSet;
 
-public class EFSMGuard implements  Cloneable, Serializable  {
+public abstract class EFSMGuard implements  Cloneable, Serializable  {
 
 	/**
 	 * 
@@ -16,7 +16,7 @@ public class EFSMGuard implements  Cloneable, Serializable  {
 
 	private Exp<Boolean> guard;
 	
-	public EFSMGuard(Exp<Boolean> guard) {
+	public EFSMGuard() {
 		this.guard = guard;
 	}
 	
@@ -60,4 +60,6 @@ public class EFSMGuard implements  Cloneable, Serializable  {
 			return false;
 		}
 	}
+
+    public abstract boolean guard(EFSMContext ctx);
 }
