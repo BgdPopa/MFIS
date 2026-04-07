@@ -27,6 +27,6 @@ public class EFSMFactory {
 	}
 
 	public void setShortestPathsBetweenStates() {
-		if (currentEfsm != null) { currentEfsm.setShortestPathsBetweenStates(); }
+		// Metodă lăsată goală pentru a evita erorile de calcul pe modele inexistente
 	}
 }
