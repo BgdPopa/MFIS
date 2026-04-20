@@ -28,6 +28,27 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.14.0</version>
+				<configuration>
+					<includes>
+						<include>eu/fbk/iv4xr/mbt/efsm/EFSM.java</include>
+						<include>eu/fbk/iv4xr/mbt/efsm/EFSMBuilder.java</include>
+						<include>eu/fbk/iv4xr/mbt/efsm/EFSMConfiguration.java</include>
+						<include>eu/fbk/iv4xr/mbt/efsm/EFSMContext.java</include>
+						<include>eu/fbk/iv4xr/mbt/efsm/EFSMGuard.java</include>
+						<include>eu/fbk/iv4xr/mbt/efsm/EFSMOperation.java</include>
+						<include>eu/fbk/iv4xr/mbt/efsm/EFSMParameter.java</include>
+						<include>eu/fbk/iv4xr/mbt/efsm/EFSMParameterGenerator.java</include>
+						<include>eu/fbk/iv4xr/mbt/efsm/EFSMState.java</include>
+						<include>eu/fbk/iv4xr/mbt/efsm/EFSMTransition.java</include>
+						<include>eu/fbk/iv4xr/mbt/fifo/*.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven-surefire-plugin.version}</version>
 				<configuration>

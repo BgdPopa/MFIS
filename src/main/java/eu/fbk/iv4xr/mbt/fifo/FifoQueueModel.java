@@ -3,32 +3,24 @@ package eu.fbk.iv4xr.mbt.fifo;
 import eu.fbk.iv4xr.mbt.efsm.EFSM;
 import eu.fbk.iv4xr.mbt.efsm.EFSMBuilder;
 import eu.fbk.iv4xr.mbt.efsm.EFSMContext;
-import eu.fbk.iv4xr.mbt.efsm.EFSMTransition;
-import eu.fbk.iv4xr.mbt.efsm.EFSMState;
-import eu.fbk.iv4xr.mbt.efsm.EFSMParameterGenerator;
 import eu.fbk.iv4xr.mbt.efsm.EFSMGuard;
 import eu.fbk.iv4xr.mbt.efsm.EFSMOperation;
+import eu.fbk.iv4xr.mbt.efsm.EFSMParameterGenerator;
+import eu.fbk.iv4xr.mbt.efsm.EFSMState;
+import eu.fbk.iv4xr.mbt.efsm.EFSMTransition;
 
 public class FifoQueueModel {
 
-    // 1. Definim Stările
     public enum State { EMPTY, PARTIAL, FULL }
 
-    // 2. Definim Contextul (Memoria)
     public static class FifoContext extends EFSMContext {
         public int currentSize = 0;
         public final int MAX_CAPACITY = 5;
     }
 
-    // 3. Metoda care construiește și returnează modelul EFSM
-    public EFSM buildModel() {
-        FifoContext context = new FifoContext();
-        EFSMBuilder builder = new EFSMBuilder(EFSM.class);
-
-        // a) Definim tranziția PUSH (Adaugă element)
+    private EFSMTransition createPushTransition(String id) {
         EFSMTransition pushTransition = new EFSMTransition();
-        pushTransition.setId("push");
-
+        pushTransition.setId(id);
         pushTransition.setGuard(new EFSMGuard() {
             @Override
             public boolean guard(EFSMContext ctx) {
@@ -36,7 +28,6 @@ public class FifoQueueModel {
                 return c.currentSize < c.MAX_CAPACITY;
             }
         });
-
         pushTransition.setOp(new EFSMOperation() {
             @Override
             public boolean execute(EFSMContext ctx) {
@@ -45,11 +36,12 @@ public class FifoQueueModel {
                 return true;
             }
         });
+        return pushTransition;
+    }
 
-        // b) Definim tranziția POP (Scoate element)
+    private EFSMTransition createPopTransition(String id) {
         EFSMTransition popTransition = new EFSMTransition();
-        popTransition.setId("pop");
-
+        popTransition.setId(id);
         popTransition.setGuard(new EFSMGuard() {
             @Override
             public boolean guard(EFSMContext ctx) {
@@ -57,7 +49,6 @@ public class FifoQueueModel {
                 return c.currentSize > 0;
             }
         });
-
         popTransition.setOp(new EFSMOperation() {
             @Override
             public boolean execute(EFSMContext ctx) {
@@ -66,18 +57,21 @@ public class FifoQueueModel {
                 return true;
             }
         });
+        return popTransition;
+    }
 
-        // c) Construim Graful (legăm stările cu tranzițiile)
+    public EFSM buildModel() {
+        FifoContext context = new FifoContext();
+        EFSMBuilder builder = new EFSMBuilder(EFSM.class);
+
         builder
-                .withTransition(new EFSMState(State.EMPTY.name()), new EFSMState(State.PARTIAL.name()), pushTransition)
-                .withTransition(new EFSMState(State.PARTIAL.name()), new EFSMState(State.PARTIAL.name()), pushTransition)
-                .withTransition(new EFSMState(State.PARTIAL.name()), new EFSMState(State.FULL.name()), pushTransition)
-                .withTransition(new EFSMState(State.PARTIAL.name()), new EFSMState(State.PARTIAL.name()), popTransition)
-                .withTransition(new EFSMState(State.PARTIAL.name()), new EFSMState(State.EMPTY.name()), popTransition)
-                .withTransition(new EFSMState(State.FULL.name()), new EFSMState(State.PARTIAL.name()), popTransition);
+            .withTransition(new EFSMState(State.EMPTY.name()), new EFSMState(State.PARTIAL.name()), createPushTransition("push_empty_to_partial"))
+            .withTransition(new EFSMState(State.PARTIAL.name()), new EFSMState(State.PARTIAL.name()), createPushTransition("push_partial_to_partial"))
+            .withTransition(new EFSMState(State.PARTIAL.name()), new EFSMState(State.FULL.name()), createPushTransition("push_partial_to_full"))
+            .withTransition(new EFSMState(State.PARTIAL.name()), new EFSMState(State.PARTIAL.name()), createPopTransition("pop_partial_to_partial"))
+            .withTransition(new EFSMState(State.PARTIAL.name()), new EFSMState(State.EMPTY.name()), createPopTransition("pop_partial_to_empty"))
+            .withTransition(new EFSMState(State.FULL.name()), new EFSMState(State.PARTIAL.name()), createPopTransition("pop_full_to_partial"));
 
-        // FIX: Am pasat explicit un null forțat la tipul cerut de EvoMBT
-        EFSM model = builder.build(new EFSMState(State.EMPTY.name()), context, (EFSMParameterGenerator) null);
-        return model;
+        return builder.build(new EFSMState(State.EMPTY.name()), context, (EFSMParameterGenerator) null);
     }
 }
