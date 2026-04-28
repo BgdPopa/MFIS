@@ -12,10 +12,11 @@ import eu.fbk.iv4xr.mbt.efsm.EFSMTransition;
 public class FifoQueueModel {
 
     public enum State { EMPTY, PARTIAL, FULL }
+    private static final int MAX_CAPACITY = 5;
 
     public static class FifoContext extends EFSMContext {
         public int currentSize = 0;
-        public final int MAX_CAPACITY = 5;
+        public final int MAX_CAPACITY = FifoQueueModel.MAX_CAPACITY;
     }
 
     private EFSMTransition createPushTransition(String id) {
@@ -73,5 +74,9 @@ public class FifoQueueModel {
             .withTransition(new EFSMState(State.FULL.name()), new EFSMState(State.PARTIAL.name()), createPopTransition("pop_full_to_partial"));
 
         return builder.build(new EFSMState(State.EMPTY.name()), context, (EFSMParameterGenerator) null);
+    }
+
+    public int maxCapacity() {
+        return MAX_CAPACITY;
     }
 }
